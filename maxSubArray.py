@@ -7,6 +7,9 @@ class MaxSubArray:
     id = 53
 
     def maxSubArray(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+
         max_sum = nums[0]
         sum = 0
 

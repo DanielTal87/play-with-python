@@ -2,6 +2,7 @@
 
 from typing import Optional
 
+from maxProfit import MaxProfit, test_cases_121
 from maxSubArray import MaxSubArray, test_cases_53
 from randomizedSet import RandomizedSet, test_cases_380
 from removeDuplicatesK import RemoveDuplicatesK, test_cases_1029
@@ -57,6 +58,14 @@ def run_tests(tests):
                 output = solution.maxSubArray(nums)
                 compare_expected_and_output(expected_output, output, index)
 
+        # Test LeetCode: 121
+        if solution_class is MaxProfit:
+            for index, test_case in enumerate(test_cases, start=1):
+                prices, expected_output = test_case
+                solution = solution_class()
+                output = solution.maxProfit(prices)
+                compare_expected_and_output(expected_output, output, index)
+
 
 ##### Analyze test results functions #####
 
@@ -79,5 +88,6 @@ run_tests(
         (RandomizedSet, test_cases_380),
         (SpiralMatrix, test_cases_54),
         (MaxSubArray, test_cases_53),
+        (MaxProfit, test_cases_121),
     ]
 )
