@@ -2,11 +2,13 @@
 
 from typing import Optional
 
+from constructStringFromBinaryTree import Tree2string, test_cases_606
 from maxProfit import MaxProfit, test_cases_121
 from maxSubArray import MaxSubArray, test_cases_53
 from randomizedSet import RandomizedSet, test_cases_380
 from removeDuplicatesK import RemoveDuplicatesK, test_cases_1029
 from spiralMatrix import SpiralMatrix, test_cases_54
+from utils.BinaryTree import array_to_binary_tree
 
 
 def run_tests(tests):
@@ -66,6 +68,15 @@ def run_tests(tests):
                 output = solution.maxProfit(prices)
                 compare_expected_and_output(expected_output, output, index)
 
+        # Test LeetCode: 606
+        if solution_class is Tree2string:
+            for index, test_case in enumerate(test_cases, start=1):
+                input, expected_output = test_case
+                root = array_to_binary_tree(input)
+                solution = solution_class()
+                output = solution.tree2str(root)
+                compare_expected_and_output(expected_output, output, index)
+
 
 ##### Analyze test results functions #####
 
@@ -89,5 +100,6 @@ run_tests(
         (SpiralMatrix, test_cases_54),
         (MaxSubArray, test_cases_53),
         (MaxProfit, test_cases_121),
+        (Tree2string, test_cases_606),
     ]
 )
