@@ -31,8 +31,8 @@ jobs:
           pip install sphinx
       - name: Security Scan
         run: |
-          # Run bandit scanner
-          bandit -r .
+          # Run bandit scanner excluding myenv directory
+          bandit -r . --exclude myenv
       - name: Check for outdated dependencies
         run: |
           pip list --outdated
