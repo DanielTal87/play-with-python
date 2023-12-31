@@ -2,12 +2,16 @@ from typing import Optional
 
 from randomizedSet import RandomizedSet, test_cases_380
 from removeDuplicatesK import RemoveDuplicatesK, test_cases_1029
+from spiralMatrix import SpiralMatrix, test_cases_54
 
 
 def run_tests(tests):
     for solution_class, test_cases in tests:
-        print(f"\033[33m\nRunning tests for {solution_class.__name__}:\033[0m")
+        print(
+            f"\033[33m\nRunning tests for {solution_class.__name__}, LeetCode {solution_class.id}:\033[0m"
+        )
 
+        # Test LeetCode: 1029
         if solution_class is RemoveDuplicatesK:
             for index, test_case in enumerate(test_cases, start=1):
                 test_input, k, expected_output = test_case
@@ -15,6 +19,7 @@ def run_tests(tests):
                 output = solution.removeDuplicates(test_input, k)
                 compare_expected_and_output(expected_output, output, index)
 
+        # Test LeetCode: 380
         if solution_class is RandomizedSet:
             randomized_set = solution_class()
             outputs = []
@@ -32,6 +37,14 @@ def run_tests(tests):
 
             for index, (output, expected) in enumerate(outputs, start=1):
                 compare_expected_and_output(expected, output, index)
+
+        # Test LeetCode: 54
+        if solution_class is SpiralMatrix:
+            for index, test_case in enumerate(test_cases, start=1):
+                matrix, expected_output = test_case
+                solution = solution_class()
+                output = solution.spiralOrder(matrix)
+                compare_expected_and_output(expected_output, output, index)
 
 
 ##### Analyze test results functions #####
@@ -53,5 +66,6 @@ run_tests(
     [
         (RemoveDuplicatesK, test_cases_1029),
         (RandomizedSet, test_cases_380),
+        (SpiralMatrix, test_cases_54),
     ]
 )

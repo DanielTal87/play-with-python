@@ -4,6 +4,8 @@ import random
 
 
 class RandomizedSet:
+    id = 380
+
     def __init__(self):
         self.arr = []
         self.dict = {}

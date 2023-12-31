@@ -2,6 +2,8 @@
 
 
 class RemoveDuplicatesK:
+    id = 1029
+
     def removeDuplicates(self, s: str, k: int) -> str:
         stack = []
         for char in s:
