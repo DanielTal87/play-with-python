@@ -1,7 +1,7 @@
 # LeetCode: 1209
 
 
-class Solution1029:
+class RemoveDuplicatesK:
     def removeDuplicates(self, s: str, k: int) -> str:
         stack = []
         for char in s:
