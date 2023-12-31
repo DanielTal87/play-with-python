@@ -39,7 +39,6 @@ jobs:
         run: |
           # Run bandit scanner excluding myenv directory
           bandit -r . --exclude ./myenv
-        if: failure()
 
       - name: Check for outdated dependencies
         run: |
