@@ -1,3 +1,5 @@
+# Run tests cases for all solutions
+
 from typing import Optional
 
 from randomizedSet import RandomizedSet, test_cases_380
