@@ -2,6 +2,7 @@
 
 from typing import Optional
 
+from maxSubArray import MaxSubArray, test_cases_53
 from randomizedSet import RandomizedSet, test_cases_380
 from removeDuplicatesK import RemoveDuplicatesK, test_cases_1029
 from spiralMatrix import SpiralMatrix, test_cases_54
@@ -48,6 +49,14 @@ def run_tests(tests):
                 output = solution.spiralOrder(matrix)
                 compare_expected_and_output(expected_output, output, index)
 
+        # Test LeetCode: 53
+        if solution_class is MaxSubArray:
+            for index, test_case in enumerate(test_cases, start=1):
+                nums, expected_output = test_case
+                solution = solution_class()
+                output = solution.maxSubArray(nums)
+                compare_expected_and_output(expected_output, output, index)
+
 
 ##### Analyze test results functions #####
 
@@ -69,5 +78,6 @@ run_tests(
         (RemoveDuplicatesK, test_cases_1029),
         (RandomizedSet, test_cases_380),
         (SpiralMatrix, test_cases_54),
+        (MaxSubArray, test_cases_53),
     ]
 )
