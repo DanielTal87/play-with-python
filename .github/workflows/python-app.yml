@@ -31,6 +31,12 @@ jobs:
           # Install bandit specifically
           pip install bandit
 
+      - name: Lint with Ruff
+        run: |
+          pip install ruff
+          ruff --output-format=github .
+        continue-on-error: true
+
       - name: Install Sphinx
         run: |
           pip install sphinx
