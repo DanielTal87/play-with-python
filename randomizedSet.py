@@ -1,6 +1,6 @@
 # LeetCode: 380
 
-import random
+import secrets
 
 
 class RandomizedSet:
@@ -38,7 +38,7 @@ class RandomizedSet:
         return True
 
     def getRandom(self) -> int:
-        index = random.randrange(0, len(self.arr))
+        index = secrets.randbelow(len(self.arr))
 
         return self.arr[index]
 
