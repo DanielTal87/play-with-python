@@ -6,6 +6,7 @@ from climbingStairs import ClimbingStairs, test_cases_70
 from constructStringFromBinaryTree import Tree2string, test_cases_606
 from maxProfit import MaxProfit, test_cases_121
 from maxSubArray import MaxSubArray, test_cases_53
+from randomizedCollection import RandomizedCollection, test_cases_381
 from randomizedSet import RandomizedSet, test_cases_380
 from removeDuplicatesK import RemoveDuplicatesK, test_cases_1029
 from spiralMatrix import SpiralMatrix, test_cases_54
@@ -40,6 +41,25 @@ def run_tests(tests):
                     result = randomized_set.remove(value)
                 elif operation == "getRandom":
                     result = randomized_set.getRandom()
+
+                outputs.append((result, expected))
+
+            for index, (output, expected) in enumerate(outputs, start=1):
+                compare_expected_and_output(expected, output, index)
+
+        # Test LeetCode: 381
+        if solution_class is RandomizedCollection:
+            outputs = []
+            randomized_collection = RandomizedCollection()
+            for index, test_case in enumerate(test_cases, start=1):
+                operation, value, expected = test_case
+
+                if operation == "insert":
+                    result = randomized_collection.insert(value)
+                elif operation == "remove":
+                    result = randomized_collection.remove(value)
+                elif operation == "getRandom":
+                    result = randomized_collection.getRandom()
 
                 outputs.append((result, expected))
 
@@ -125,6 +145,7 @@ run_tests(
     [
         (RemoveDuplicatesK, test_cases_1029),
         (RandomizedSet, test_cases_380),
+        (RandomizedCollection, test_cases_381),
         (SpiralMatrix, test_cases_54),
         (MaxSubArray, test_cases_53),
         (MaxProfit, test_cases_121),
