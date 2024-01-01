@@ -54,10 +54,10 @@ jobs:
           echo "Bandit Results:"
           echo "$bandit_result"
 
-          # Parse JSON using Python
-          high_or_medium_severity=$(python3 -c "import sys, json; data = json.load(sys.stdin); issues = [issue for issue in data['results'] if issue['issue_severity'] in ['medium', 'high']]; sys.exit(1 if issues else 0)" <<< "$bandit_result")
+          # Parse JSON using Python and output the highest severity found
+          high_or_medium_severity=$(python3 -c "import sys, json; data = json.load(sys.stdin); issues = [issue['issue_severity'] for issue in data['results'] if issue['issue_severity'] in ['medium', 'high']]; print(max(issues, default='low'))" <<< "$bandit_result")
 
-          if [ "$high_or_medium_severity" -eq 1 ]; then
+          if [ "$high_or_medium_severity" != "low" ]; then
             echo "Bandit found issues with severity other than low. Failing the step."
             exit 1
           else
