@@ -1,6 +1,6 @@
 # LeetCode: 380
 
-import secrets
+import random
 
 
 class RandomizedSet:
@@ -14,13 +14,15 @@ class RandomizedSet:
         if val in self.dict:
             return False
 
-        index = len(self.arr)
+        self.dict[val] = len(self.arr)
         self.arr.append(val)
-        self.dict[val] = index
 
         return True
 
     def remove(self, val: int) -> bool:
+        if val not in self.dict:
+            return False
+
         index = self.dict.get(val, None)
         if index is None:
             return False
@@ -38,9 +40,7 @@ class RandomizedSet:
         return True
 
     def getRandom(self) -> int:
-        index = secrets.randbelow(len(self.arr))
-
-        return self.arr[index]
+        return random.choice(self.arr)
 
 
 test_cases_380 = [
