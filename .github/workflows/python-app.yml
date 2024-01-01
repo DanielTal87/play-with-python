@@ -44,7 +44,7 @@ jobs:
       - name: Security Scan
         run: |
           # Run bandit scanner excluding myenv directory and ignore issues with severity "low"
-          bandit -r . --exclude ./myenv -s BXXX
+          bandit -r . --exclude ./myenv --severity-level medium,high
 
       - name: Check for outdated dependencies
         run: |
