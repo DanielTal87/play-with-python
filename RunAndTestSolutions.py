@@ -16,7 +16,7 @@ from utils.BinaryTree import array_to_binary_tree
 def run_tests(tests):
     for solution_class, test_cases in tests:
         print(
-            f"\033[33m\nRunning tests for {solution_class.__name__}, LeetCode {solution_class.id}:\033[0m"
+            f"\033[33m\nRunning tests for {solution_class.__name__} | LeetCode {solution_class.id}:\033[0m"
         )
 
         # Test LeetCode: 1029
