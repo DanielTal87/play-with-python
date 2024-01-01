@@ -2,6 +2,7 @@
 
 from typing import Optional
 
+from climbingStairs import ClimbingStairs, test_cases_70
 from constructStringFromBinaryTree import Tree2string, test_cases_606
 from maxProfit import MaxProfit, test_cases_121
 from maxSubArray import MaxSubArray, test_cases_53
@@ -27,7 +28,7 @@ def run_tests(tests):
 
         # Test LeetCode: 380
         if solution_class is RandomizedSet:
-            randomized_set = solution_class()
+            randomized_set = RandomizedSet()
             outputs = []
             for index, test_case in enumerate(test_cases, start=1):
                 operation, value, expected = test_case
@@ -48,7 +49,7 @@ def run_tests(tests):
         if solution_class is SpiralMatrix:
             for index, test_case in enumerate(test_cases, start=1):
                 matrix, expected_output = test_case
-                solution = solution_class()
+                solution = SpiralMatrix()
                 output = solution.spiralOrder(matrix)
                 compare_expected_and_output(expected_output, output, index)
 
@@ -56,7 +57,7 @@ def run_tests(tests):
         if solution_class is MaxSubArray:
             for index, test_case in enumerate(test_cases, start=1):
                 nums, expected_output = test_case
-                solution = solution_class()
+                solution = MaxSubArray()
                 output = solution.maxSubArray(nums)
                 compare_expected_and_output(expected_output, output, index)
 
@@ -64,7 +65,7 @@ def run_tests(tests):
         if solution_class is MaxProfit:
             for index, test_case in enumerate(test_cases, start=1):
                 prices, expected_output = test_case
-                solution = solution_class()
+                solution = MaxProfit()
                 output = solution.maxProfit(prices)
                 compare_expected_and_output(expected_output, output, index)
 
@@ -73,8 +74,16 @@ def run_tests(tests):
             for index, test_case in enumerate(test_cases, start=1):
                 input, expected_output = test_case
                 root = array_to_binary_tree(input)
-                solution = solution_class()
+                solution = Tree2string()
                 output = solution.tree2str(root)
+                compare_expected_and_output(expected_output, output, index)
+
+        # Test LeetCode: 70
+        if solution_class is ClimbingStairs:
+            for index, test_case in enumerate(test_cases, start=1):
+                input, expected_output = test_case
+                solution = ClimbingStairs()
+                output = solution.climbStairs(input)
                 compare_expected_and_output(expected_output, output, index)
 
 
@@ -101,5 +110,6 @@ run_tests(
         (MaxSubArray, test_cases_53),
         (MaxProfit, test_cases_121),
         (Tree2string, test_cases_606),
+        (ClimbingStairs, test_cases_70),
     ]
 )
