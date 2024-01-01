@@ -47,6 +47,7 @@ jobs:
           bandit -r . --exclude ./myenv
 
       - name: Check Bandit Results
+        if: always()
         run: |
           # Check if all Bandit issues are low severity
           bandit_result=$(bandit -r . --exclude ./myenv --format json)
