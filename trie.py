@@ -21,7 +21,6 @@ class Trie:
                 cur.children[c] = Node()
             cur = cur.children[c]
         cur.isEnd = True
-        return None
 
     def search(self, word: str) -> bool:
         cur = self.root
