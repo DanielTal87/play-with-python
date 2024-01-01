@@ -53,8 +53,11 @@ jobs:
           bandit_result=$(bandit -r . --exclude ./myenv --format json)
           echo "Bandit Results:"
           echo "$bandit_result"
-          high_or_medium_severity=$(echo "$bandit_result" | jq '.results[] | select(.issue_severity | IN("medium", "high"))')
-          if [ -n "$high_or_medium_severity" ]; then
+
+          # Parse JSON using Python
+          high_or_medium_severity=$(python3 -c "import sys, json; data = json.load(sys.stdin); issues = [issue for issue in data['results'] if issue['issue_severity'] in ['medium', 'high']]; sys.exit(1 if issues else 0)" <<< "$bandit_result")
+
+          if [ "$high_or_medium_severity" -eq 1 ]; then
             echo "Bandit found issues with severity other than low. Failing the step."
             exit 1
           else
