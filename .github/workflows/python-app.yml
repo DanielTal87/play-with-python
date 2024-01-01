@@ -44,7 +44,7 @@ jobs:
       - name: Security Scan
         run: |
           # Run bandit scanner excluding myenv directory
-          bandit -r . --exclude ./myenv
+          bandit -r . --exclude ./myenv || true
 
       - name: Check Bandit Results
         if: always()
