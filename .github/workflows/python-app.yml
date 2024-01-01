@@ -46,6 +46,17 @@ jobs:
           # Run bandit scanner excluding myenv directory
           bandit -r . --exclude ./myenv
 
+      - name: Check Bandit Results
+        run: |
+          # Check if all Bandit issues are low severity
+          bandit_result=$(bandit -r . --exclude ./myenv --format json)
+          if echo "$bandit_result" | jq '.results[].issue_severity' | grep -qv "low"; then
+            echo "Bandit found issues with severity other than low. Failing the step."
+            exit 1
+          else
+            echo "Bandit scan passed with low severity issues."
+          fi
+
       - name: Check for outdated dependencies
         run: |
           pip list --outdated
