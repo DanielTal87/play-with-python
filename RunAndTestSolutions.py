@@ -9,6 +9,7 @@ from maxSubArray import MaxSubArray, test_cases_53
 from randomizedSet import RandomizedSet, test_cases_380
 from removeDuplicatesK import RemoveDuplicatesK, test_cases_1029
 from spiralMatrix import SpiralMatrix, test_cases_54
+from trie import Trie, test_cases_208
 from utils.BinaryTree import array_to_binary_tree
 
 
@@ -86,6 +87,24 @@ def run_tests(tests):
                 output = solution.climbStairs(input)
                 compare_expected_and_output(expected_output, output, index)
 
+        # Test LeetCode: 208
+        if solution_class is Trie:
+            trie = Trie()
+            outputs = []
+            for index, test_case in enumerate(test_cases, start=1):
+                operation, value, expected = test_case
+
+                if operation == "insert":
+                    result = trie.insert(value)
+                elif operation == "search":
+                    result = trie.search(value)
+                elif operation == "startsWith":
+                    result = trie.startsWith(value)
+                outputs.append((result, expected))
+
+            for index, (output, expected) in enumerate(outputs, start=1):
+                compare_expected_and_output(expected, output, index)
+
 
 ##### Analyze test results functions #####
 
@@ -111,5 +130,6 @@ run_tests(
         (MaxProfit, test_cases_121),
         (Tree2string, test_cases_606),
         (ClimbingStairs, test_cases_70),
+        (Trie, test_cases_208),
     ]
 )
