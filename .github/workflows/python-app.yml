@@ -43,26 +43,8 @@ jobs:
 
       - name: Security Scan
         run: |
-          # Run bandit scanner excluding myenv directory
-          bandit -r . --exclude ./myenv || true
-
-      - name: Check Bandit Results
-        if: always()
-        run: |
-          # Check if there are any Bandit issues with severity higher than low
-          bandit_result=$(bandit -r . --exclude ./myenv --format json)
-          echo "Bandit Results:"
-          echo "$bandit_result"
-
-          # Parse JSON using Python and output the highest severity found
-          high_or_medium_severity=$(python3 -c "import sys, json; data = json.load(sys.stdin); issues = [issue['issue_severity'] for issue in data['results'] if issue['issue_severity'] in ['medium', 'high']]; print(max(issues, default='low'))" <<< "$bandit_result")
-
-          if [ "$high_or_medium_severity" != "low" ]; then
-            echo "Bandit found issues with severity other than low. Failing the step."
-            exit 1
-          else
-            echo "Bandit scan passed with low severity issues."
-          fi
+          # Run bandit scanner excluding myenv directory and ignore issues with severity "low"
+          bandit -r . --exclude ./myenv --confidence low
 
       - name: Check for outdated dependencies
         run: |
