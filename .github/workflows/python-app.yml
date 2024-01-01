@@ -41,10 +41,17 @@ jobs:
         run: |
           pip install sphinx
 
-      - name: Security Scan
+      - name: Security Scan (Low severity)
         run: |
-          # Run bandit scanner excluding myenv directory and ignore issues with severity "low"
-          bandit -r . --exclude ./myenv --severity-level medium,high
+          bandit -r . --exclude ./myenv --severity-level low || true
+
+      - name: Security Scan (Medium severity)
+        run: |
+          bandit -r . --exclude ./myenv --severity-level medium
+
+      - name: Security Scan (High severity)
+        run: |
+          bandit -r . --exclude ./myenv --severity-level high
 
       - name: Check for outdated dependencies
         run: |
