@@ -4,6 +4,8 @@ from typing import Optional
 
 from climbingStairs import ClimbingStairs, test_cases_70
 from constructStringFromBinaryTree import Tree2string, test_cases_606
+from findMissingNumber import FindMissingNumber, test_cases_FMN
+from hasPairWithSum import HasPairWithSum, test_cases_HPWS
 from maxProfit import MaxProfit, test_cases_121
 from maxSubArray import MaxSubArray, test_cases_53
 from randomizedCollection import RandomizedCollection, test_cases_381
@@ -16,8 +18,10 @@ from utils.BinaryTree import array_to_binary_tree
 
 def run_tests(tests):
     for solution_class, test_cases in tests:
+        source_name = getattr(solution_class, "source", "LeetCode")
+        source_id = getattr(solution_class, "id", "")
         print(
-            f"\033[33m\nRunning tests for {solution_class.__name__} | LeetCode {solution_class.id}:\033[0m"
+            f"\033[33m\nRunning tests for {solution_class.__name__} | {source_name} {source_id}:\033[0m"
         )
 
         # Test LeetCode: 1029
@@ -125,6 +129,30 @@ def run_tests(tests):
             for index, (output, expected) in enumerate(outputs, start=1):
                 compare_expected_and_output(expected, output, index)
 
+        # Test FindMissingNumber
+        if solution_class is FindMissingNumber:
+            for index, test_case in enumerate(test_cases, start=1):
+                input, expected_output = test_case
+                solution = FindMissingNumber()
+                output = solution.findTheMissingNumber(input)
+                compare_expected_and_output(expected_output, output, index)
+
+        # Test HasPairWithSum
+        if solution_class is HasPairWithSum:
+            for index, test_case in enumerate(test_cases, start=1):
+                nums, target_sum, expected_output = test_case
+                print(
+                    "nums:",
+                    nums,
+                    "target_sum:",
+                    target_sum,
+                    "expected_output:",
+                    expected_output,
+                )
+                hasPairWithSum = HasPairWithSum()
+                output = hasPairWithSum.hasPairWithSum(nums, target_sum)
+                compare_expected_and_output(expected_output, output, index)
+
 
 ##### Analyze test results functions #####
 
@@ -152,5 +180,7 @@ run_tests(
         (Tree2string, test_cases_606),
         (ClimbingStairs, test_cases_70),
         (Trie, test_cases_208),
+        (FindMissingNumber, test_cases_FMN),
+        (HasPairWithSum, test_cases_HPWS),
     ]
 )
