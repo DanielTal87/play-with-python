@@ -32,4 +32,9 @@ class RegularExpressionMatching:
         return dp[len(text)][len(pattern)]
 
 
-test_cases_10 = [("aa", "a", False), ("aa", "a*", True), ("ab", ".*", True)]
+test_cases_10 = [
+    ("aa", "a", False),
+    ("aa", "a*", True),
+    ("ab", ".*", True),
+    ("aaaaaaaaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*a*", False),
+]

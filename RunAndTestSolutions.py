@@ -11,6 +11,7 @@ from maxSubArray import MaxSubArray, test_cases_53
 from randomizedCollection import RandomizedCollection, test_cases_381
 from randomizedSet import RandomizedSet, test_cases_380
 from regularExpressionMatching import RegularExpressionMatching, test_cases_10
+from regularExpressionMatching2 import RegularExpressionMatching2, test_cases_10_2
 from removeDuplicatesK import RemoveDuplicatesK, test_cases_1029
 from spiralMatrix import SpiralMatrix, test_cases_54
 from trie import Trie, test_cases_208
@@ -154,6 +155,14 @@ def run_tests(tests):
                 output = solution.isMatch(text, pattern)
                 compare_expected_and_output(expected_output, output, index)
 
+        # Test LeetCode: 10 #2
+        if solution_class is RegularExpressionMatching2:
+            for index, test_case in enumerate(test_cases, start=1):
+                text, pattern, expected_output = test_case
+                solution = RegularExpressionMatching2()
+                output = solution.isMatch(text, pattern)
+                compare_expected_and_output(expected_output, output, index)
+
 
 ##### Analyze test results functions #####
 
@@ -184,5 +193,6 @@ run_tests(
         (FindMissingNumber, test_cases_FMN),
         (HasPairWithSum, test_cases_HPWS),
         (RegularExpressionMatching, test_cases_10),
+        (RegularExpressionMatching2, test_cases_10_2),
     ]
 )
