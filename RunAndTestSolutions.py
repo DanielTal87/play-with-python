@@ -6,6 +6,7 @@ from climbingStairs import ClimbingStairs, test_cases_70
 from constructStringFromBinaryTree import Tree2string, test_cases_606
 from findMissingNumber import FindMissingNumber, test_cases_FMN
 from hasPairWithSum import HasPairWithSum, test_cases_HPWS
+from maxProduct import MaxProduct, test_cases_152
 from maxProfit import MaxProfit, test_cases_121
 from maxSubArray import MaxSubArray, test_cases_53
 from randomizedCollection import RandomizedCollection, test_cases_381
@@ -163,6 +164,14 @@ def run_tests(tests):
                 output = solution.isMatch(text, pattern)
                 compare_expected_and_output(expected_output, output, index)
 
+        # Test LeetCode: 152
+        if solution_class is MaxProduct:
+            for index, test_case in enumerate(test_cases, start=1):
+                nums, expected_output = test_case
+                solution = MaxProduct()
+                output = solution.maxProduct(nums)
+                compare_expected_and_output(expected_output, output, index)
+
 
 ##### Analyze test results functions #####
 
@@ -194,5 +203,6 @@ run_tests(
         (HasPairWithSum, test_cases_HPWS),
         (RegularExpressionMatching, test_cases_10),
         (RegularExpressionMatching2, test_cases_10_2),
+        (MaxProduct, test_cases_152),
     ]
 )
