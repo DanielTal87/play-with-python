@@ -10,7 +10,6 @@ class HasPairWithSum:
     id = "2"
 
     def hasPairWithSum(self, nums: list[int], target_sum: int) -> bool:
-        print("nums:", nums, "target_sum:", target_sum)
         seen = set()
 
         for num in nums:

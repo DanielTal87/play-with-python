@@ -141,14 +141,6 @@ def run_tests(tests):
         if solution_class is HasPairWithSum:
             for index, test_case in enumerate(test_cases, start=1):
                 nums, target_sum, expected_output = test_case
-                print(
-                    "nums:",
-                    nums,
-                    "target_sum:",
-                    target_sum,
-                    "expected_output:",
-                    expected_output,
-                )
                 hasPairWithSum = HasPairWithSum()
                 output = hasPairWithSum.hasPairWithSum(nums, target_sum)
                 compare_expected_and_output(expected_output, output, index)
