@@ -36,5 +36,7 @@ test_cases_10_2 = [
     ("aa", "a", False),
     ("aa", "a*", True),
     ("ab", ".*", True),
+    ("aab", "c*a*b", True),
     ("aaaaaaaaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*a*", False),
+    ("aaaaaaaaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*a*b", True),
 ]
